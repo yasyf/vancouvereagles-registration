@@ -1,0 +1,36 @@
+{% raw %}
+<div id='index'>
+  <md-content class="md-padding">
+    <div layout="column" layout-align="center center">
+      <md-button class="md-raised md-primary" style='width: 50%;' ng-click='newRegistration()'>
+        New Registration
+      </md-button>
+    </div>
+    <br>
+    <md-divider></md-divider>
+    <md-list>
+      <md-item ng-repeat="reg in registrations" class='pointer'>
+        <md-item-content>
+          <div class="md-tile-content">
+            <h3>{{reg.first_name}} {{reg.last_name}}</h3>
+            <h4 class='capitalize'>Vancouver {{reg.location}}</h4>
+            <p class='capitalize'>{{reg.season}} Season</p>
+          </div>
+          <div class="md-tile-right right">
+            <section layout="row" layout-align="center center">
+              <md-button class="md-fab" style='margin-right: 10px;'>
+                <md-icon icon="/static/img/ic_access_time_24px.svg" class='icon' aria-label='Pick Times'>
+                </md-icon>
+              </md-button>
+              <md-button class='md-raised' ng-class="reg.paid ? 'md-primary' : 'md-warn'">
+                  {{reg.paid ? 'Paid' : 'Unpaid'}}
+              </md-button>
+            </section>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    <md-list>
+  </md-content>
+</div>
+{% endraw %}

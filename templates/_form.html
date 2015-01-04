@@ -1,0 +1,63 @@
+{% macro complete_attrs(key, attrs) -%}
+  name="{{ key }}"
+  ng-model="data.{{ key }}"
+  aria-label="{{ attrs[0] | safe }}"
+  {{ attrs[2] | attrs | safe }}
+  {% if not key in form.optional %}required{% endif %}
+  {% if state == 'readonly' %}ng-disabled='true' readonly{% endif %}
+{%- endmacro %}
+
+<form role="form" name='form'>
+  {% for row in form.rows %}
+    <div
+      {% if loop.index0 not in form.bare %}
+        layout="row" class='row' layout-align="center center"
+      {% else %}
+        class='long-row'
+      {% endif %}
+    >
+      {% for key, attrs in row.items() %}
+        {% if attrs[1] == 'textarea' %}
+          <label for='{{ key }}'>{{ attrs[0] | safe }}</label>
+          <textarea {{ complete_attrs(key, attrs) }}></textarea>
+        {% elif attrs[1] == 'select' %}
+          <label for='{{ key }}'>{{ attrs[0] | safe }}</label>
+          <select {{ complete_attrs(key, attrs) }}>
+            {% for option_value, option in attrs[2].options.items() %}
+              <option value="{{ option_value }}">{{ option | safe }}</option>
+            {% endfor %}
+          </select>
+        {% elif attrs[1] == 'slider' %}
+          <label ng-init='data.{{key}} = data.{{key}} || {{ attrs[2].min or 1 }}'>
+            {{ attrs[0] | safe }}: {{ "{{data." + key + "}}" }}
+          </label>
+          <md-slider md-discrete {{ complete_attrs(key, attrs) }}>
+          </md-slider>
+        {% elif attrs[1] == 'radio' %}
+          <label for='{{ key }}'>{{ attrs[0] | safe }}</label>
+          <md-radio-group {{ complete_attrs(key, attrs) }}>
+            {% for option_value, option in attrs[2].options.items() %}
+              <md-radio-button value="{{ option_value }}" aria-label="{{ option }}">
+                {{ option | safe }}
+              </md-radio-button>
+            {% endfor %}
+          </md-radio-group>
+        {% elif attrs[1] == 'checkbox' %}
+          <md-checkbox {{ complete_attrs(key, attrs) }}>
+            {{ attrs[0] | safe }}
+          </md-checkbox>
+        {% else %}
+          <md-text-float label="{{ attrs[0] | safe }}" type="{{ attrs[1] or 'text' }}"
+              {{ complete_attrs(key, attrs) }}>
+          </md-text-float>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endfor %}
+  {% if state != 'readonly' %}
+    <br>
+    <md-button class="md-raised md-primary" style='width: 100%;' ng-click='submit()' ng-disabled='form.$invalid'>
+      Submit
+    </md-button>
+  {% endif %}
+</form>

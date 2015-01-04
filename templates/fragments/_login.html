@@ -1,0 +1,25 @@
+{% raw %}
+<div id='login'>
+  <md-content class="md-padding">
+    <div layout="column" layout-align="center center">
+      <p>
+        Please login to continue. If you have not used the registration site before, an account will be created for you.
+      </p>
+      <div ng-if='!submitting'>
+        <form>
+          <div layout="row" class='row'>
+            <md-text-float label="Username" ng-model="data.username"></md-text-float>
+            <md-text-float label="Password" ng-model="data.password" type='password'></md-text-float>
+          </div>
+          <md-button class="md-raised md-primary" style='width: 100%;' ng-click='login()'>
+            Login
+          </md-button>
+        </form>
+      </div>
+      <div ng-if='submitting'>
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+    </div>
+  </md-content>
+</div>
+{% endraw %}

@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='FlaskStart' ng-controller='RootCtrl' ng-cloak>
+<html lang="en" ng-app='VancouverEagles' ng-controller='RootCtrl' ng-cloak>
   <head>
+    <base href="/">
+    <meta name="fragment" content="!" />
     <meta charset="utf-8" />
-    <title>{% block title %}{% endblock %}</title>
+
+    {% raw %}
+      <meta name="description" ng-bind-template="{{title}}. Vancouver Eagles basketball registration page." content="Vancouver Eagles basketball registration page." />
+      <title ng-bind-template="{{title}} - Vancouver Eagles">Vancouver Eagles</title>
+    {% endraw %}
+
     {% block meta %}{% endblock %}
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css">
     {% assets "css_all" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}"></link>
     {% endassets %}
@@ -14,11 +21,15 @@
     </style>
 
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js"></script>
     {% assets "js_app" %}
       <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
@@ -30,6 +41,7 @@
     </script>
   </head>
   <body>
+    <div id='navigator-indicator'></div>
     <div class="container-fluid" id='container'>
       <div class="main">
         <!-- Messages -->

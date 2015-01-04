@@ -1,3 +1,13 @@
-FlaskStart.controller 'IndexCtrl', ['$scope', ($scope) ->
-  $scope.data = {}
+VancouverEagles.controller 'IndexCtrl', ['$scope', '$rootScope', 'User', '$location', '$timeout',
+ ($scope, $rootScope, User, $location, $timeout) ->
+
+  $rootScope.title = 'Registrations'
+  $scope.registrations = []
+
+  User.get 'registrations', []
+  .then (registrations) ->
+    $timeout -> $scope.registrations = registrations
+
+  $scope.newRegistration = ->
+    $location.path '/registration/new'
 ]
