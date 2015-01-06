@@ -10,7 +10,7 @@
     <md-divider></md-divider>
     <md-list>
       <md-item ng-if='data.cost'>
-        <md-item-content class='pointer'>
+        <md-item-content>
           <div class="md-tile-content">
             <h3>{{data.cost | currency}}</h3>
             <h4 class='capitalize'>{{query.selections}} Sessions per Week</h4>
@@ -20,7 +20,7 @@
         <md-divider></md-divider>
       </md-item>
       <md-item ng-if='data.registration_fee'>
-        <md-item-content class='pointer'>
+        <md-item-content>
           <div class="md-tile-content">
             <h3>{{data.total - data.cost | currency}}</h3>
             <h4 class='capitalize'>Annual Registration Fee ({{year}})</h4>

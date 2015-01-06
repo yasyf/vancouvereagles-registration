@@ -60,7 +60,8 @@
   {% endfor %}
   {% if state != 'readonly' %}
     <br>
-    <md-button class="md-raised md-primary" style='width: 100%;' ng-click='submit()' ng-disabled='form.$invalid'>
+    <md-button class="md-raised md-primary" style='width: 100%;'
+        ng-click='submit()' ng-disabled='form.$invalid' id="form_submit_btn">
       {{form.button or 'Submit'}}
     </md-button>
   {% endif %}

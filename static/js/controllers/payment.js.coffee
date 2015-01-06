@@ -24,6 +24,10 @@ VancouverEagles.controller 'PaymentCtrl', ['$scope', '$rootScope', 'User', '$tim
         registration_fee: not _.contains(registration_years, $scope.year)
       $scope.formURL = "/form/editable/payment?#{$.param($scope.query)}"
 
+  $scope.$on '$includeContentLoaded', ->
+    if $scope.registration?.paid
+      $('#form_submit_btn').hide()
+
   $scope.submit = ->
     return if $scope.registration?.paid
     Stripe.open
