@@ -12,13 +12,11 @@ def ui_mask(pattern):
 def options(opts):
   return {x:x.capitalize() for x in opts}
 
-def transforms():
-  return \
-  {
-    "parents": lambda x: x.split(",")
-  }
+def transform(data):
+  data["parents"] = data["parents"].split(",")
+  return data
 
-def form():
+def form(**kwargs):
   return \
   {
     "rows": [

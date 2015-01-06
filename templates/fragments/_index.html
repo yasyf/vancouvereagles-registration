@@ -2,16 +2,16 @@
 <div id='index'>
   <md-content class="md-padding">
     <div layout="column" layout-align="center center">
-      <md-button class="md-raised md-primary" style='width: 50%;' ng-click='newRegistration()'>
+      <md-button class="md-raised md-primary" style='width: 50%;' ng-click="goTo('new')">
         New Registration
       </md-button>
     </div>
     <br>
     <md-divider></md-divider>
     <md-list>
-      <md-item ng-repeat="reg in registrations" class='pointer'>
+      <md-item ng-repeat="reg in registrations">
         <md-item-content>
-          <div class="md-tile-content">
+          <div class="md-tile-content" class='pointer' ng-click="goTo($index)">
             <h3>{{reg.first_name}} {{reg.last_name}}</h3>
             <h4 class='capitalize'>Vancouver {{reg.location}}</h4>
             <p class='capitalize'>{{reg.season}} Season</p>

@@ -33,7 +33,7 @@ def terminal_view(name):
 @app.route('/form/<state>/<name>')
 def form_view(state, name):
   module = get_form_module(name)
-  form = module.form()
+  form = module.form(**request.args.to_dict())
   return render_template('_form.html', form=form, state=state)
 
 @app.route('/api/login/<username>', methods=['POST'])
@@ -70,3 +70,9 @@ def api_user_add_view(userid, key):
   value = request.json.get(key)
   user.add(key, value)
   return jsonify({key: value})
+
+@app.route('/api/form/process/<name>', methods=['POST'])
+def api_form_process_view(name):
+  module = get_form_module(name)
+  transform = module.transform
+  return jsonify({'data': transform(request.json['data'])})

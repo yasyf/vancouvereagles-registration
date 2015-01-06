@@ -1,5 +1,5 @@
-VancouverEagles.controller 'RegistrationCtrl', ['$scope', '$rootScope', 'User', '$timeout', '$routeParams', '$location',
- ($scope, $rootScope, User, $timeout, $routeParams, $location) ->
+VancouverEagles.controller 'RegistrationCtrl', ['$scope', '$rootScope', 'User', '$timeout', '$routeParams', '$location', 'API',
+ ($scope, $rootScope, User, $timeout, $routeParams, $location, API) ->
 
   index = parseInt($routeParams.registrationId, 10)
   $scope.data = {}
@@ -21,7 +21,10 @@ VancouverEagles.controller 'RegistrationCtrl', ['$scope', '$rootScope', 'User', 
 
     $scope.submit = ->
       deregister()
-      User.add 'registrations', $scope.data
+      API.post ['form', 'process', 'registration'],
+        data: $scope.data
+      .then (response) ->
+        User.add 'registrations', response.data
       .then (succeeded) ->
-        $timeout -> $location.path '/registrations'
+        $timeout -> $location.path "/schedule/new"
 ]

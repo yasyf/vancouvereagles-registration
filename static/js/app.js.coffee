@@ -16,6 +16,9 @@ VancouverEagles.config ['$routeProvider', '$locationProvider', ($routeProvider, 
   .when '/registration/:registrationId',
     templateUrl: '/template/registration'
     controller: 'RegistrationCtrl'
+  .when '/schedule/:registrationId',
+    templateUrl: '/template/schedule'
+    controller: 'ScheduleCtrl'
   .when '/login',
     templateUrl: '/template/login'
     controller: 'LoginCtrl'
