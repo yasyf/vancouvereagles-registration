@@ -20,6 +20,17 @@
       {% block css %}{% endblock %}
     </style>
 
+    {% if g.dev %}
+      <script type="text/javascript">
+        window.stripeKey = 'pk_test_r6j1nQqFf7b9FeKmqEtlz3g8';
+      </script>
+    {% else %}
+      <script type="text/javascript">
+        window.stripeKey = 'pk_live_lRzqkvtT5rbuRvfOhUxpi1rL';
+      </script>
+    {% endif %}
+
+    <script src="//checkout.stripe.com/checkout.js"></script>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="//cdn.jsdelivr.net/lodash/2.4.1/lodash.min.js"></script>
     <script src="//cdn.jsdelivr.net/momentjs/2.8.4/moment.min.js"></script>

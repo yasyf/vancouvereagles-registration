@@ -28,5 +28,5 @@ VancouverEagles.controller 'ScheduleCtrl', ['$scope', '$rootScope', 'User', '$ti
       .then (response) ->
         User.set "registrations.#{$scope.index}.times", response.data.times
       .then (succeeded) ->
-        $timeout -> $location.path "/registrations"
+        $timeout -> $location.path "/payment/#{$scope.index}"
 ]

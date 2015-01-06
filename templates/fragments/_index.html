@@ -22,7 +22,7 @@
                 <md-icon icon="/static/img/ic_access_time_24px.svg" class='icon' aria-label='Pick Times'>
                 </md-icon>
               </md-button>
-              <md-button class='md-raised' ng-class="reg.paid ? 'md-primary' : 'md-warn'">
+              <md-button class='md-raised' ng-class="reg.paid ? 'md-primary' : 'md-warn'" ng-click="goTo('payment', $index)">
                   {{reg.paid ? 'Paid' : 'Unpaid'}}
               </md-button>
             </section>

@@ -13,7 +13,7 @@ def options(opts):
   return {x:x.capitalize() for x in opts}
 
 def transform(data):
-  data["parents"] = data["parents"].split(",")
+  data["parents"] = [x.strip() for x in data["parents"].split(",")]
   return data
 
 def form(**kwargs):

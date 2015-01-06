@@ -11,5 +11,6 @@ pycparser==2.10
 pymongo==2.7.2
 requests==2.5.1
 six==1.8.0
+stripe==1.19.1
 webassets==0.10.1
 Werkzeug==0.9.6

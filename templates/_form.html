@@ -17,7 +17,11 @@
       {% endif %}
     >
       {% for key, attrs in row.items() %}
-        {% if attrs[1] == 'textarea' %}
+        {% if attrs[1] == 'hidden' %}
+          <input type='hidden' name='{{ key }}' ng-value="data.{{ key }}"
+              {% if attrs[2] %}value='{{ attrs[2] }}'
+              ng-init='data.{{key}} = {{ attrs[2] }}'{% endif %}>
+        {% elif attrs[1] == 'textarea' %}
           <label for='{{ key }}'>{{ attrs[0] | safe }}</label>
           <textarea {{ complete_attrs(key, attrs) }}></textarea>
         {% elif attrs[1] == 'select' %}
@@ -57,7 +61,7 @@
   {% if state != 'readonly' %}
     <br>
     <md-button class="md-raised md-primary" style='width: 100%;' ng-click='submit()' ng-disabled='form.$invalid'>
-      Submit
+      {{form.button or 'Submit'}}
     </md-button>
   {% endif %}
 </form>

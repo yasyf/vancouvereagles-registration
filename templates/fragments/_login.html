@@ -8,7 +8,7 @@
       <div ng-if='!submitting'>
         <form>
           <div layout="row" class='row'>
-            <md-text-float label="Username" ng-model="data.username"></md-text-float>
+            <md-text-float label="Email" ng-model="data.username" type='email'></md-text-float>
             <md-text-float label="Password" ng-model="data.password" type='password'></md-text-float>
           </div>
           <md-button class="md-raised md-primary" style='width: 100%;' ng-click='login()'>

@@ -1,10 +1,10 @@
-from flask import render_template, jsonify, request
-from app import app
+from flask import render_template, jsonify, request, g
+from app import app, dev
 from helpers import *
 
 @app.before_request
 def preprocess_request():
-  pass
+  g.dev = dev
 
 @app.after_request
 def postprocess_request(response):
