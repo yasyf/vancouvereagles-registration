@@ -7,7 +7,7 @@ VancouverEagles.controller 'ScheduleCtrl', ['$scope', '$rootScope', 'User', '$ti
   User.get 'registrations', []
   .then (registrations) ->
     $timeout ->
-      if index
+      if index isnt undefined
         registration = registrations[index]
         $scope.index = index
         $rootScope.title = 'Schedule'
@@ -17,6 +17,7 @@ VancouverEagles.controller 'ScheduleCtrl', ['$scope', '$rootScope', 'User', '$ti
         $scope.index = registrations.length - 1
         $rootScope.title = 'New Schedule'
         $scope.formURL = "/form/editable/schedule?location=#{registration.location}&league=#{registration.league}"
+      $scope.data = _.object(_.map(registration.times, (v) -> [v, true]))
 
   unless index
     $scope.submit = ->

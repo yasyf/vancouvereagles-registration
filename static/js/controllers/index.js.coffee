@@ -8,6 +8,6 @@ VancouverEagles.controller 'IndexCtrl', ['$scope', '$rootScope', 'User', '$locat
   .then (registrations) ->
     $timeout -> $scope.registrations = registrations
 
-  $scope.goTo = (registrationId) ->
-    $location.path "/registration/#{registrationId}"
+  $scope.goTo = (action, registrationId) ->
+    $location.path "/#{action}/#{registrationId}"
 ]

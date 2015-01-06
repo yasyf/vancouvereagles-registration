@@ -10,15 +10,15 @@
     <md-divider></md-divider>
     <md-list>
       <md-item ng-repeat="reg in registrations">
-        <md-item-content>
-          <div class="md-tile-content" class='pointer' ng-click="goTo($index)">
+        <md-item-content class='pointer'>
+          <div class="md-tile-content" ng-click="goTo('registration', $index)">
             <h3>{{reg.first_name}} {{reg.last_name}}</h3>
             <h4 class='capitalize'>Vancouver {{reg.location}}</h4>
             <p class='capitalize'>{{reg.season}} Season</p>
           </div>
           <div class="md-tile-right right">
             <section layout="row" layout-align="center center">
-              <md-button class="md-fab" style='margin-right: 10px;'>
+              <md-button class="md-fab" style='margin-right: 10px;' ng-click="goTo('schedule', $index)">
                 <md-icon icon="/static/img/ic_access_time_24px.svg" class='icon' aria-label='Pick Times'>
                 </md-icon>
               </md-button>
