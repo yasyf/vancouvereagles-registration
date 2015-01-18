@@ -10,7 +10,7 @@ VancouverEagles.controller 'LoginCtrl', ['$scope', '$rootScope', 'API', '$locati
     API.post ['login', $scope.data.username], $scope.data
     .then (response) ->
       $mdToast.show($mdToast.simple().content(response.message))
-      $timeout -> $scope.submitting = true
+      $scope.submitting = false
       unless response.error
         localStorage.setItem 'userId', response.userId
         $timeout ->

@@ -4,6 +4,7 @@ import bcrypt, datetime
 
 class User(object):
   def __init__(self, userid=None, username=None):
+    self.user = {}
     if userid:
       self.user = users.find_one({'_id': ObjectId(userid)})
     elif username:
@@ -11,6 +12,10 @@ class User(object):
 
   def get(self, key, default=''):
     return self.user.get(key, default)
+
+  @classmethod
+  def get_all(self, key, predicate={}):
+    return {str(x['_id']):x.get(key) for x in users.find(predicate) if key in x}
 
   def add(self, key, value):
     self.raw_update({'$addToSet': {key: value}})
@@ -26,10 +31,7 @@ class User(object):
     self.user = users.find_one({'_id': self.get('_id')})
 
   def check(self):
-    try:
-      return self.user is not None
-    except:
-      return False
+    return self.user != {}
 
   def login(self, password):
     return bcrypt.hashpw(str(password), str(self.user['password'])) == str(self.user['password'])

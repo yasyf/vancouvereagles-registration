@@ -10,6 +10,9 @@ VancouverEagles.controller 'RootCtrl',  ['$scope', '$location', 'User', ($scope,
 
 VancouverEagles.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
+  .when '/admin',
+    templateUrl: '/template/admin'
+    controller: 'AdminCtrl'
   .when '/registrations',
     templateUrl: '/template/index'
     controller: 'IndexCtrl'

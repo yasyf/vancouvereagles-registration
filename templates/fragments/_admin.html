@@ -1,0 +1,35 @@
+{% raw %}
+<div id='admin'>
+  <md-content class="md-padding">
+    <div layout="column" layout-align="center center">
+      <select class='capitalize' ng-model='data.year' ng-options='y for y in years'></select><br>
+      <select class='capitalize' ng-model='data.season' ng-options='s for s in seasons'></select><br>
+      <select class='capitalize' ng-model='data.location' ng-options="l as 'Vancouver ' + l for l in locations"></select><br>
+      <md-button class="md-raised md-primary capitalize" style='width: 50%;' ng-click="exportLocation()">
+        Export {{title}}
+      </md-button>
+    </div>
+    <br>
+    <md-divider></md-divider>
+    <md-list ng-repeat='(id, group) in registrations'>
+      <md-item ng-repeat="reg in group | filter:data">
+        <md-item-content class='pointer'>
+          <div class="md-tile-content" ng-click="exportUser(id)">
+            <h3>{{reg.first_name}} {{reg.last_name}}</h3>
+            <h4 class='capitalize'>Vancouver {{reg.location}}</h4>
+            <p class='capitalize'>{{reg.season}} Season</p>
+          </div>
+          <div class="md-tile-right right">
+            <section layout="row" layout-align="center center">
+              <md-button class='md-raised' ng-class="reg.paid ? 'md-primary' : 'md-warn'">
+                  {{reg.paid ? 'Paid' : 'Unpaid'}}
+              </md-button>
+            </section>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    <md-list>
+  </md-content>
+</div>
+{% endraw %}

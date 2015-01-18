@@ -55,6 +55,7 @@ def form(**kwargs):
         "previous_experience": ["Previous Basketball Experience", "slider", {"step": 1, "min": 1, "max": 5}]
       },
       {
+        'year': [None, 'hidden', YEAR],
         "season": ["Season", "radio", {"options": {
           "fall": "Fall {}: September 22 &mdash; December 5".format(YEAR - 1),
           "winter": "Winter {}: January 5 &mdash; April 3".format(YEAR),

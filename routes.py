@@ -39,7 +39,7 @@ def form_view(state, name):
 @app.route('/api/login/<username>', methods=['POST'])
 def api_login_view(username):
   user = User(username=username)
-  password = request.form.get('password')
+  password = request.json.get('password')
   if user.check():
     if user.login(password):
       return jsonify({'error': False, 'message': 'You are now logged in as {}!'.format(username), 'userId': user.get_id()})
@@ -51,6 +51,27 @@ def api_login_view(username):
       return jsonify({'error': False, 'message': 'Your account has been created!', 'userId': user.get_id()})
     except:
       return jsonify({'error': True, 'message': 'Your account could not be created.'})
+
+@app.route('/api/admin/export/location', methods=['POST'])
+def api_admin_export_location_view():
+  query = request.json.get('query', {})
+  def predicate(registration):
+    return all([str(registration.get(v)) == v for k,v in query.items()])
+  registrations = filter(predicate, User.get_all('registrations'))
+  dataset = create_dataset(registrations)
+  return jsonify({'csv': dataset.csv})
+
+@app.route('/api/admin/export/user', methods=['POST'])
+def api_admin_export_user_view():
+  userid = request.json.get('query', {}).get('_id')
+  user = User(userid=userid)
+  registrations = user.get('registrations', [])
+  dataset = create_dataset(registrations)
+  return jsonify({'csv': dataset.csv})
+
+@app.route('/api/admin/get/<key>')
+def api_admin_get_view(key):
+  return jsonify({key: User.get_all(key)})
 
 @app.route('/api/user/<userid>/get/<key>')
 def api_user_get_view(userid, key):
