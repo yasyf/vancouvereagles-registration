@@ -1,14 +1,16 @@
 from mongo import *
 from bson import ObjectId
+from collections import defaultdict
 import bcrypt, datetime
 
 class User(object):
   def __init__(self, userid=None, username=None):
-    self.user = {}
     if userid:
       self.user = users.find_one({'_id': ObjectId(userid)})
     elif username:
       self.user = users.find_one({'username': username.lower()})
+    if not getattr(self, 'user', None):
+      self.user = defaultdict(lambda x: None)
 
   def get(self, key, default=''):
     return self.user.get(key, default)
