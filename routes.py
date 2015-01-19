@@ -56,8 +56,9 @@ def api_login_view(username):
 def api_admin_export_location_view():
   query = request.json.get('query', {})
   def predicate(registration):
-    return all([str(registration.get(v)) == v for k,v in query.items()])
-  registrations = filter(predicate, User.get_all('registrations'))
+    return all([registration.get(k) == v for k,v in query.items()])
+  registrations = sum(User.get_all('registrations').values(), [])
+  registrations = filter(predicate, registrations)
   dataset = create_dataset(registrations)
   return jsonify({'csv': dataset.csv})
 
