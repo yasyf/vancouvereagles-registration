@@ -7,7 +7,7 @@ VancouverEagles.controller 'ScheduleCtrl', ['$scope', '$rootScope', 'User', '$ti
   User.get 'registrations', []
   .then (registrations) ->
     $timeout ->
-      if index isnt undefined
+      if index
         registration = registrations[index]
         $scope.index = index
         $rootScope.title = 'Schedule'

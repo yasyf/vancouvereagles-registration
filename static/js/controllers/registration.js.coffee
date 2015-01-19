@@ -4,7 +4,7 @@ VancouverEagles.controller 'RegistrationCtrl', ['$scope', '$rootScope', 'User', 
   index = parseInt($routeParams.registrationId, 10)
   $scope.data = {}
 
-  if index isnt undefined
+  if index
     $rootScope.title = 'Registration'
     $scope.formURL = '/form/readonly/registration'
     User.get 'registrations', []
