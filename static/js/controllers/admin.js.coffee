@@ -31,8 +31,8 @@ VancouverEagles.controller 'AdminCtrl', ['$scope', '$rootScope', 'API', '$window
       query: query
     .then (data) ->
       blob = new Blob [data.csv],
-        type : 'text/csv'
-      $window.location = URL.createObjectURL(blob)
+        type: 'text/csv'
+      saveAs blob, "vancouver_#{$scope.data.location}_#{$scope.data.season}_#{$scope.data.year}.csv"
 
   $scope.exportAll = ->
     doExport 'location', {}

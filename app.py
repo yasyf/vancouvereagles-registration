@@ -13,7 +13,7 @@ env.load_path = [os.path.dirname(__file__)]
 
 js = []
 coffee = []
-order = ['services', 'filters', 'directives', 'controllers']
+order = ['vendor', 'services', 'filters', 'directives', 'controllers']
 for x in order:
   js.extend(glob.glob('static/js/{}/*.js'.format(x)))
   coffee.extend(glob.glob('static/js/{}/*.js.coffee'.format(x)))
